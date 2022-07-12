@@ -5,12 +5,12 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class User(AbstractUser):
-    username = models.CharField(max_length=250)
-    email = models.EmailField()
+    username = models.CharField(max_length=250, unique=True)
+    email = models.EmailField(unique=True)
+    pass
 
     def __str__(self):
         return f'{self.username} {self.email}'
-
 
 class Habit(models.Model):
     title = models.CharField(max_length=250)
@@ -18,7 +18,7 @@ class Habit(models.Model):
     goal = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name='habits')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return f'{self.title} {self.description}'
