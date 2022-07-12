@@ -9,22 +9,25 @@ class User(AbstractUser):
     email = models.EmailField()
 
     def __str__(self):
-        return f'{self.username}'
+        return f'{self.username} {self.email}'
+
 
 class Habit(models.Model):
     title = models.CharField(max_length=250)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
+    goal = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name='habits')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.title}'
+        return f'{self.title} {self.description}'
 
 
 class Tracker(models.Model):
     habit = models.ForeignKey(Habit, on_delete=models.CASCADE,
                               related_name='trackers')
+    quantity = models.IntegerField()
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
