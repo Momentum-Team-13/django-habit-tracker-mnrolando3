@@ -1,11 +1,31 @@
+from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
 class User(AbstractUser):
-    pass
+    username = models.CharField(max_length=250)
+    email = models.EmailField()
 
+    def __str__(self):
+        return f'{self.username}'
 
 class Habit(models.Model):
-    pass
+    title = models.CharField(max_length=250)
+    description = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='habits')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title}'
+
+
+class Tracker(models.Model):
+    habit = models.ForeignKey(Habit, on_delete=models.CASCADE,
+                              related_name='trackers')
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.updated_at}'
