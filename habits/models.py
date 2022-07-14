@@ -11,6 +11,7 @@ class User(AbstractUser):
     def __str__(self):
         return f'{self.username} {self.email}'
 
+
 class Habit(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField(null=True, blank=True)

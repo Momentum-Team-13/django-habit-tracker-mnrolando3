@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<body id="page">
+
+    <h1 class="header">Let's Track Habits!</h1>
+
+    <div><a href="{% url 'add_habit' %}">Add Habit to Track</a></div><br>
+
+    <div class="list">
+        {% for tracker in trackers %}
+        <div class="tracker">
+            <div><a href="">{{ tracker.habit }}</a></div>
+
+            <div>this week: {{ tracker.quantity }}</div>
+            <time class="date">updated {{ tracker.updated_at }}</time>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+{% endblock %}
