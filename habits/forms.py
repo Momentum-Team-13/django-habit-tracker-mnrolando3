@@ -9,4 +9,5 @@ class HabitForm(forms.ModelForm):
             'title',
             'description',
             'goal',
+            'frequency',
         ]
