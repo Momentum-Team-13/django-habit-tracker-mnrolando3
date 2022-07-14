@@ -1,9 +1,17 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from .models import Habit, Tracker, User
-from .forms import HabitForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Habit
+# from .forms import HabitForm
 
 
 # Create your views here.
+def main(request):
+    if request.user.is_authenticated:
+        return redirect('habit_list')
+    return render(request, 'habits/main.html')
+
+
+@login_required
 def habit_list(request):
     habits = Habit.objects.all()
     return render(request, "habits/habit_list.html", {"habits": habits})
