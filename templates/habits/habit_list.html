@@ -12,12 +12,12 @@
     </div><br>
 
     <div class="list">
-        {% for tracker in trackers %}
+        {% for habit in habits %}
         <div class="tracker">
-            <div><a href="">{{ tracker.habit }}</a></div>
+            <div><a href="">{{ habit.title }}</a></div>
 
-            <div>this week: {{ tracker.quantity }}</div>
-            <time class="date">updated {{ tracker.updated_at }}</time>
+            <div>this week: {{ habit.frequency }}</div>
+            <time class="date">updated</time>
         </div>
         {% endfor %}
     </div>

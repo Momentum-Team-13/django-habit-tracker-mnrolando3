@@ -23,7 +23,9 @@ def add_habit(request):
     else:
         form = HabitForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_habit = form.save(commit=False)
+            new_habit.user = request.user
+            new_habit.save()
             return redirect(to='habit_list')
 
     return render(request, "habits/add_habit.html", {"form": form})
