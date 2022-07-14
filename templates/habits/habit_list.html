@@ -5,9 +5,11 @@
 
 <body id="page">
 
-    <h1 class="header">Let's Track Habits!</h1>
-
-    <div><a href="">Add Habit to Track</a></div><br>
+    <div class="header">
+    <h1>Let's Track Habits!</h1>
+    <a href="{% url 'add_habit' %}">Add Habit to Track</a>
+    <a href="{% url 'auth_logout' %}">Log Out</a>
+    </div><br>
 
     <div class="list">
         {% for tracker in trackers %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Habit
-# from .forms import HabitForm
+from .forms import HabitForm
 
 
 # Create your views here.
@@ -17,13 +17,13 @@ def habit_list(request):
     return render(request, "habits/habit_list.html", {"habits": habits})
 
 
-# def add_habit(request):
-#     if request.method == 'GET':
-#         form = HabitForm()
-#     else:
-#         form = HabitForm(data=request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(to='habit_list')
+def add_habit(request):
+    if request.method == 'GET':
+        form = HabitForm()
+    else:
+        form = HabitForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(to='habit_list')
 
-#     return render(request, "habits/add_habit.html", {"form": form})
+    return render(request, "habits/add_habit.html", {"form": form})
