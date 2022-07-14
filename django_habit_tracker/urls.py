@@ -20,6 +20,7 @@ from habits import views as habits_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('django.contrib.auth.urls')),
     path('', habits_views.main, name='main'),
     path('habits/', habits_views.habit_list, name='habit_list'),
     # path('habits/add/', habits_views.add_habit, name='add_habit'),
