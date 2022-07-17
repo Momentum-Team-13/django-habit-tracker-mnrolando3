@@ -19,14 +19,6 @@ class Frequency(models.Model):
         return f'{self.frequency}'
 
 
-class Tracker(models.Model):
-    add_record = models.PositiveIntegerField()
-    updated_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.record}{self.updated_at}'
-
-
 class Habit(models.Model):
     title = models.CharField(max_length=250)
     description = models.TextField(null=True, blank=True)
@@ -37,8 +29,16 @@ class Habit(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,
                              related_name='user_habits')
     created_at = models.DateTimeField(auto_now_add=True, null=True)
-    tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE,
-                                related_name='track_habits')
 
     def __str__(self):
         return f'{self.title} {self.description}'
+
+
+class Tracker(models.Model):
+    add_record = models.PositiveIntegerField()
+    updated_at = models.DateTimeField(auto_now_add=True)
+    habit = models.ForeignKey(Habit, on_delete=models.CASCADE,
+                              related_name='trackers')
+
+    def __str__(self):
+        return f'{self.add_record}{self.updated_at}'
