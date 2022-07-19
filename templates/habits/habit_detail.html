@@ -4,7 +4,7 @@
 
 <body id="page">
 
-    <h1 class="header">{{ habit.title }}</h1>
+    <h1 class="header">{{ habit.title }} | {{ habit.goal }} | {{ habit.frequency }}</h1>
 
     <div class="form">
         <form class="tracker_form" action="{% url 'habit_detail' pk=habit.pk %}" method="POST">
@@ -21,7 +21,13 @@
     <time class="date">updated: {{ tracker.updated_at }}</time>
     {% endfor %}
 
-    <a href="{% url 'habit_list' %}">Return to Habit List</a>
+    <p>
+        <a href="{% url 'edit_habit' pk=habit.pk %}">Edit</a><br>
+        <a class="red" href="{% url 'delete_habit' pk=habit.pk %}">Delete</a>
+        <a href="{% url 'habit_list' %}">Return to List</a>
+    </p>
+
+
 
 </body>
 
