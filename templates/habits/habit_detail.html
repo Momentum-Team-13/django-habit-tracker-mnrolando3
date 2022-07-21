@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<body id="page">
+
+    <h1 class="header">{{ habit.title }} | {{ habit.goal }} | {{ habit.frequency }}</h1>
+
+    <div class="form">
+        <form class="tracker_form" action="{% url 'habit_detail' pk=habit.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div>
+                <button type="submit">Add Record</button>
+            </div>
+        </form>
+    </div><br>
+
+    {% for tracker in habit.trackers.all %}
+    <div>{{ tracker.add_record }}</div>
+    <time class="date">updated: {{ tracker.updated_at }}</time>
+    {% endfor %}
+
+    <p>
+        <a href="{% url 'edit_habit' pk=habit.pk %}">Edit</a><br>
+        <a class="red" href="{% url 'delete_habit' pk=habit.pk %}">Delete</a>
+        <a href="{% url 'habit_list' %}">Return to List</a>
+    </p>
+
+
+
+</body>
+
+{% endblock %}

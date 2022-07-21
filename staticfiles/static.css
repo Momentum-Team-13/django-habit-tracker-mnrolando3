@@ -1,0 +1,19 @@
+#page {
+    border: 5px solid purple;
+}
+
+.header {
+    border: 5px solid blue;
+}
+
+.list {
+    border: 5px solid green;
+}
+
+.tracker {
+    border: 5px solid yellow;
+}
+
+.date {
+    border: 5px solid pink;
+}

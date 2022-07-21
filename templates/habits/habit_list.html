@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<body id="page">
+
+    <div class="header">
+    <h1>Let's Track Habits!</h1>
+    <a href="{% url 'add_habit' %}">Add Habit to Track</a>
+    <a href="{% url 'auth_logout' %}">Log Out</a>
+    </div><br>
+
+    <div class="list">
+        {% for habit in user.user_habits.all %}
+        <div class="tracker">
+            <div><a href="{% url 'habit_detail' pk=habit.pk %}">{{ habit.title }}</a> | {{ habit.goal }} | {{ habit.frequency }}</div>
+
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+{% endblock %}
